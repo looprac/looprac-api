@@ -36,6 +36,9 @@ gem 'devise', '~> 3.5'
 # Use MySQL for database 
 gem 'mysql2'
 
+# Use uuid as user identifiers
+gem 'uuidtools'
+
 # Dotfile for environment variables
 gem 'dotenv', groups: [:development, :test] 
 
