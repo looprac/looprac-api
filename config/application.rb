@@ -24,3 +24,9 @@ module Carpool
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
+
+# Import environment variables when dotenv is available
+if Gem::Specification.find_all_by_name('dotenv').any?
+  require 'dotenv'
+  Dotenv.load "config/variables/#{ ENV['RAILS_ENV'] || :development }.env"
+end

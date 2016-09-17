@@ -23,8 +23,16 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Use Devise for user authentication
+# Use jwt and devise for user authentication
+gem 'jwt', '~> 1.5.5'
 gem 'devise', '~> 3.5'
+
+# Use MySQL for database 
+gem 'mysql2'
+
+# Dotfile for environment variables
+gem 'dotenv', groups: [:development, :test] 
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
