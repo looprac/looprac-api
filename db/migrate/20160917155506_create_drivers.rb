@@ -5,10 +5,10 @@ class CreateDrivers < ActiveRecord::Migration
 
       t.string :origin_name
       t.string :dest_name
-      t.string :origin_latitude
-      t.string :origin_longitude
-      t.string :dest_latitude
-      t.string :dest_longitude
+      t.float :origin_latitude, limit: 53
+      t.float :origin_longitude, limit: 53
+      t.float :dest_latitude, limit: 53
+      t.float :dest_longitude, limit: 53
       
       t.integer :departure_time
       t.integer :arrival_time

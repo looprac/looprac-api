@@ -17,10 +17,10 @@ ActiveRecord::Schema.define(version: 20160917155518) do
     t.integer  "user_id",          limit: 4
     t.string   "origin_name",      limit: 255
     t.string   "dest_name",        limit: 255
-    t.string   "origin_latitude",  limit: 255
-    t.string   "origin_longitude", limit: 255
-    t.string   "dest_latitude",    limit: 255
-    t.string   "dest_longitude",   limit: 255
+    t.float    "origin_latitude",  limit: 53
+    t.float    "origin_longitude", limit: 53
+    t.float    "dest_latitude",    limit: 53
+    t.float    "dest_longitude",   limit: 53
     t.integer  "departure_time",   limit: 4
     t.integer  "arrival_time",     limit: 4
     t.integer  "capacity",         limit: 4
@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(version: 20160917155518) do
     t.integer  "user_id",          limit: 4
     t.string   "origin_name",      limit: 255
     t.string   "dest_name",        limit: 255
-    t.string   "origin_latitude",  limit: 255
-    t.string   "origin_longitude", limit: 255
-    t.string   "dest_latitude",    limit: 255
-    t.string   "dest_longitude",   limit: 255
+    t.float    "origin_latitude",  limit: 53
+    t.float    "origin_longitude", limit: 53
+    t.float    "dest_latitude",    limit: 53
+    t.float    "dest_longitude",   limit: 53
     t.integer  "departure_time",   limit: 4
     t.integer  "arrival_time",     limit: 4
     t.integer  "driver_id",        limit: 4
@@ -64,5 +64,4 @@ ActiveRecord::Schema.define(version: 20160917155518) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "passengers", "drivers"
 end
