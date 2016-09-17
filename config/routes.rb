@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   Rails.application.routes.draw do
     post 'auth_user' => 'authentication#authenticate_user'
-    get 'home' => 'home#index'
+    get 'login' => 'login#index'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
