@@ -32,13 +32,13 @@ class TripsController < ApplicationController
     uri = URI.parse(url)
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Post.new(uri.path, {'Content-Type' => 'application/json'})
-    request.body =  {
+    request.body = {
       origin_lat: params[:origin_lat].to_f,
       origin_lng: params[:origin_lng].to_f,
       destin_lat: params[:destin_lat].to_f,
       destin_lng: params[:destin_lng].to_f,
-      leave_after: params[:leave_after].to_f,
-      arrive_by: params[:arrive_by].to_f
+      leave_after: params[:leave_after].to_i,
+      arrive_by: params[:arrive_by].to_i
     }.to_json
     # request.body = trip_params.to_json
     http.request(request)
