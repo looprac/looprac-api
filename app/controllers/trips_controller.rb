@@ -6,16 +6,12 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.create(trip_params.merge(user_id: User.lookup(params))
+    @trip = Trip.create(trip_params.merge(user_id: User.find_by_email(params[:email]))
     if @trip.save
       Net::HTTP.post_form(URI.parse("http://localhost:3869"), @trip.to_json)
     else
       render json: { error: "cannot create trip" }
     end
-  end
-
-  def show
-     
   end
 
   private
