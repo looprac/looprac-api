@@ -1,13 +1,9 @@
 class Trip < ActiveRecord::Base
-  def driver_uuid
-    User.find(user_id).uuid
-  end
-
   def send_create_request(url)
       uri = URI.parse(url)
       http = Net::HTTP.new(uri.host, uri.port)
       request = Net::HTTP::Post.new(uri.path, {'Content-Type' => 'application/json'})
-      request.body = create_trip_json
+      request.body = create_trip_json.to_json
       http.request(request)
   end
 
@@ -22,5 +18,11 @@ class Trip < ActiveRecord::Base
       seats: seats,
       driver_uuid: driver_uuid
     }
+  end
+
+  private
+
+  def driver_uuid
+    User.find(user_id).uuid
   end
 end

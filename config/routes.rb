@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post 'login' => 'login#authenticate_user'
   post 'signup' => 'signin#create'
   get 'status' => 'user_status#index'
+  resources :trip
 
   match "*all" => "application#cors_preflight_check", via: [:options]
   # The priority is based upon order of creation: first created -> highest priority.
