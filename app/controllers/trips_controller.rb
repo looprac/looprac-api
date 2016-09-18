@@ -12,6 +12,7 @@ class TripsController < ApplicationController
     @trip = Trip.create(trip_params.merge(user_id: User.find_by_email(params[:email]).id))
     if @trip.save
       @trip.send_create_request(REQUEST_URL)
+      render plain: "Such API! Much cool! Wow!"
     else
       render json: { error: "cannot create trip" }
     end
@@ -20,7 +21,7 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:origin_name, :destin_name, :origin_lat, :origin_lng,
+    params.permit(:origin_name, :destin_name, :origin_lat, :origin_lng,
                                  :destin_lat, :destin_lng, :leave_after, :arrive_by,
                                  :seats)
   end
