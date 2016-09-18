@@ -14,39 +14,39 @@
 ActiveRecord::Schema.define(version: 20160917155518) do
 
   create_table "drivers", force: :cascade do |t|
-    t.integer  "user_id",          limit: 4
-    t.string   "origin_name",      limit: 255
-    t.string   "dest_name",        limit: 255
-    t.float    "origin_latitude",  limit: 53
-    t.float    "origin_longitude", limit: 53
-    t.float    "dest_latitude",    limit: 53
-    t.float    "dest_longitude",   limit: 53
-    t.integer  "departure_time",   limit: 4
-    t.integer  "arrival_time",     limit: 4
-    t.integer  "capacity",         limit: 4
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.integer  "user_id",        limit: 4
+    t.string   "origin_name",    limit: 255
+    t.string   "destin_name",    limit: 255
+    t.float    "origin_lat",     limit: 53
+    t.float    "origin_lng",     limit: 53
+    t.float    "destin_lat",     limit: 53
+    t.float    "destin_lng",     limit: 53
+    t.integer  "departure_time", limit: 4
+    t.integer  "arrival_time",   limit: 4
+    t.integer  "capacity",       limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "passengers", force: :cascade do |t|
-    t.integer  "user_id",          limit: 4
-    t.string   "origin_name",      limit: 255
-    t.string   "dest_name",        limit: 255
-    t.float    "origin_latitude",  limit: 53
-    t.float    "origin_longitude", limit: 53
-    t.float    "dest_latitude",    limit: 53
-    t.float    "dest_longitude",   limit: 53
-    t.integer  "departure_time",   limit: 4
-    t.integer  "arrival_time",     limit: 4
-    t.integer  "driver_id",        limit: 4
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.integer  "user_id",        limit: 4
+    t.string   "origin_name",    limit: 255
+    t.string   "destin_name",    limit: 255
+    t.float    "origin_lat",     limit: 53
+    t.float    "origin_lng",     limit: 53
+    t.float    "destin_lat",     limit: 53
+    t.float    "destin_lng",     limit: 53
+    t.integer  "departure_time", limit: 4
+    t.integer  "arrival_time",   limit: 4
+    t.integer  "driver_id",      limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "passengers", ["driver_id"], name: "index_passengers_on_driver_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "uuid",                   limit: 36
+    t.string   "uuid",                   limit: 36,               null: false
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.string   "reset_password_token",   limit: 255

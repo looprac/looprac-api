@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   Rails.application.routes.draw do
-    post 'auth_user' => 'authentication#authenticate_user'
-    get 'login' => 'login#index'
+    post 'login' => 'login#authenticate_user'
+    post 'signup' => 'signin#create'
+    get 'status' => 'user_status#index'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
