@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  Rails.application.routes.draw do
-    post 'login' => 'login#authenticate_user'
-    post 'signup' => 'signin#create'
-    get 'status' => 'user_status#index'
-  end
+  post 'login' => 'login#authenticate_user'
+  post 'signup' => 'signin#create'
+  get 'status' => 'user_status#index'
 
+  match "*all" => "application#cors_preflight_check", :constraints => { :method => "OPTIONS" }, via: [:get, :post]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

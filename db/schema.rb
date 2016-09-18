@@ -11,39 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160917155518) do
+ActiveRecord::Schema.define(version: 20160918020917) do
 
-  create_table "drivers", force: :cascade do |t|
-    t.integer  "user_id",        limit: 4
-    t.string   "origin_name",    limit: 255
-    t.string   "destin_name",    limit: 255
-    t.float    "origin_lat",     limit: 53
-    t.float    "origin_lng",     limit: 53
-    t.float    "destin_lat",     limit: 53
-    t.float    "destin_lng",     limit: 53
-    t.integer  "departure_time", limit: 4
-    t.integer  "arrival_time",   limit: 4
-    t.integer  "capacity",       limit: 4
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+  create_table "trips", force: :cascade do |t|
+    t.string   "origin_name", limit: 255
+    t.string   "destin_name", limit: 255
+    t.float    "origin_lat",  limit: 53
+    t.float    "origin_lng",  limit: 53
+    t.float    "destin_lat",  limit: 53
+    t.float    "destin_lng",  limit: 53
+    t.integer  "leave_after", limit: 4
+    t.integer  "arrive_by",   limit: 4
+    t.integer  "seats",       limit: 4
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
-  create_table "passengers", force: :cascade do |t|
-    t.integer  "user_id",        limit: 4
-    t.string   "origin_name",    limit: 255
-    t.string   "destin_name",    limit: 255
-    t.float    "origin_lat",     limit: 53
-    t.float    "origin_lng",     limit: 53
-    t.float    "destin_lat",     limit: 53
-    t.float    "destin_lng",     limit: 53
-    t.integer  "departure_time", limit: 4
-    t.integer  "arrival_time",   limit: 4
-    t.integer  "driver_id",      limit: 4
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
-
-  add_index "passengers", ["driver_id"], name: "index_passengers_on_driver_id", using: :btree
+  add_index "trips", ["user_id"], name: "index_trips_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "uuid",                   limit: 36,               null: false
@@ -64,4 +49,5 @@ ActiveRecord::Schema.define(version: 20160917155518) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "trips", "users"
 end
