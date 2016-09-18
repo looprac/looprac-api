@@ -2,28 +2,30 @@ require 'net/http'
 
 class TripsController < ApplicationController
 
-  REQUEST_URL = "http://localhost:3869/trip/create"
-
-  def index
-    send_search_request(REQUEST_URL)
-  end
+  CREATE_URL = "http://localhost:3869/trip/create"
+  SEARCH_URL = "http://localhost:3869/trip/search"
 
   def create
     @trip = Trip.create(trip_params.merge(user_id: User.find_by_email(params[:email]).id))
     if @trip.save
-      @trip.send_create_request(REQUEST_URL)
+      @trip.send_create_request(CREATE_URL)
       render plain: "Such API! Much cool! Wow!"
     else
       render json: { error: "cannot create trip" }
     end
   end
 
+  def search
+    send_search_request(SEARCH_URL)
+    render plain: "Such API! Much cool! Wow!"
+  end
+
   private
 
   def trip_params
     params.permit(:origin_name, :destin_name, :origin_lat, :origin_lng,
-                                 :destin_lat, :destin_lng, :leave_after, :arrive_by,
-                                 :seats)
+                  :destin_lat, :destin_lng, :leave_after, :arrive_by,
+                  :seats)
   end
 
   def send_search_request(url)
