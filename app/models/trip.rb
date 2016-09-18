@@ -3,6 +3,15 @@ class Trip < ActiveRecord::Base
     User.find(user_id).uuid
   end
 
+  def send_create_request(url)
+      uri = URI.parse(url)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      request = Net::HTTP::Post.new(uri.path, {'Content-Type' => 'application/json'})
+      request.body = create_trip_json
+      http.request(request)
+  end
+
   def create_trip_json
     {
       origin_lat: origin_lat,
