@@ -6,9 +6,10 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.create(trip_params.merge(user_id: User.find_by_email(params[:email])))
+    @trip = Trip.create(trip_params.merge(user_id: User.find_by_email(params[:email]).id))
     if @trip.save
-      Net::HTTP.post_form(URI.parse("http://localhost:3869"), @trip.to_json)
+      Net::HTTP.post_form(URI.parse("http://localhost:3869/trip/create"), 
+                          @trip.to_json(except: [:origin_name, :destin_name, :user_id], methods: :driver_uuid))
     else
       render json: { error: "cannot create trip" }
     end
