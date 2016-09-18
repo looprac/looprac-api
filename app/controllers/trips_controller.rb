@@ -16,8 +16,8 @@ class TripsController < ApplicationController
   end
 
   def search
-    send_search_request(SEARCH_URL)
-    render plain: "Such API! Much cool! Wow!"
+    res = send_search_request(SEARCH_URL)
+    render json: res.body
   end
 
   private
